@@ -5,6 +5,8 @@ import Link from "next/link";
 import { COMPONENTS, rankProspects } from "../../lib/ranking";
 import { Controls, ErrorNote, Footer, Masthead, useFilters, useScoring } from "./shared";
 
+const pct = (x) => `${Math.round(x * 100)}%`;
+
 function ComponentBars({ p, weights }) {
   return (
     <dl className="bars">
@@ -51,7 +53,6 @@ function GameStrip({ games }) {
 }
 
 function ProspectRow({ p, weights }) {
-  const measurables = [p.heightText, p.weightText, p.fortyText].filter(Boolean).join(" · ");
   return (
     <li className={`prospect${p.gp ? "" : " status-no-stats"}`}>
       <span className="rank">{p.overallRank}</span>
@@ -61,7 +62,7 @@ function ProspectRow({ p, weights }) {
           <b>{p.name}</b>
         </p>
         <p className="sub">
-          {p.team} · {p.nflYear} class{measurables ? ` · ${measurables}` : ""}
+          {p.team} · {p.nflYear} class
         </p>
         <p className="line">
           <b>{p.adjPpg.toFixed(1)}</b> adj PPG <span className="muted">({p.rawPpg.toFixed(1)} raw)</span>
@@ -71,6 +72,12 @@ function ProspectRow({ p, weights }) {
             <>
               {" · "}
               {p.efficiencyValue} {p.efficiencyLabel.toLowerCase()}
+            </>
+          )}
+          {p.usage.dominator != null && (
+            <>
+              {" · "}
+              {pct(p.usage.dominator)} {p.usage.dominatorLabel}
             </>
           )}
           {p.vsTop.games > 0 && (
@@ -108,8 +115,8 @@ function Method({ config }) {
     <details className="method">
       <summary>How the Prospect Score works</summary>
       <p>
-        Each prospect gets a 0–100 score from four parts, weighted by position. A part with no
-        data yet (usually the 40 time) is left out and the others are re-weighted.
+        Each prospect gets a 0–100 score from three parts, weighted by position. Size and speed
+        aren't scored until combine numbers exist.
       </p>
       <ul>
         <li>
@@ -123,14 +130,13 @@ function Method({ config }) {
           ; everyone else ×1. RPI is recalculated from every FBS result this season.
         </li>
         <li>
-          <b>Efficiency:</b> QB adjusted yards per attempt, RB yards per touch, WR/TE yards per
-          catch, pulled toward average until there's a real sample.
+          <b>Efficiency:</b> QB adjusted yards per attempt, RB yards per touch, WR/TE receiving
+          yards per team pass attempt, pulled toward average until there's a real sample.
         </li>
         <li>
-          <b>Size:</b> height and weight against the position's range (ESPN roster data).
-        </li>
-        <li>
-          <b>Speed:</b> 40 time against the position's range (added by hand in the watchlist).
+          <b>Market share:</b> the player's share of his team's offense ("dominator rating"):
+          share of team receiving yards and TDs for WR/TE, scrimmage yards and TDs for RBs, and
+          rushing yards for QBs.
         </li>
       </ul>
       <table>
@@ -181,8 +187,8 @@ export default function Rankings({ rows, config, season, throughWeek, errors, up
     <main>
       <Masthead view="rankings" season={season}>
         <p className="lede">
-          Prospect Score through week {throughWeek}: opponent-adjusted production, efficiency, size
-          and speed.
+          Prospect Score through week {throughWeek}: opponent-adjusted production, efficiency and
+          market share.
         </p>
       </Masthead>
 

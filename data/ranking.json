@@ -5,40 +5,32 @@
   ],
 
   "weights": {
-    "QB": { "production": 55, "efficiency": 25, "size": 10, "speed": 10 },
-    "RB": { "production": 50, "efficiency": 20, "size": 15, "speed": 15 },
-    "WR": { "production": 50, "efficiency": 20, "size": 12, "speed": 18 },
-    "TE": { "production": 50, "efficiency": 15, "size": 20, "speed": 15 }
+    "QB": { "production": 65, "efficiency": 25, "marketShare": 10 },
+    "RB": { "production": 50, "efficiency": 20, "marketShare": 30 },
+    "WR": { "production": 45, "efficiency": 25, "marketShare": 30 },
+    "TE": { "production": 45, "efficiency": 25, "marketShare": 30 }
   },
 
   "benchmarks": {
     "QB": {
       "ppg": [10, 32],
-      "efficiency": { "stat": "ayPerAtt", "label": "Adj. yds/att", "range": [6, 11], "sample": 30 },
-      "height": [72, 77],
-      "weight": [200, 235],
-      "forty": [4.95, 4.5]
+      "efficiency": { "stat": "ayPerAtt", "label": "Adj. yds/att", "range": [6, 13], "sample": 30 },
+      "marketShare": [0.0, 0.35]
     },
     "RB": {
-      "ppg": [8, 28],
+      "ppg": [8, 32],
       "efficiency": { "stat": "ydsPerTouch", "label": "Yds/touch", "range": [4, 8], "sample": 15 },
-      "height": [68, 72],
-      "weight": [190, 225],
-      "forty": [4.65, 4.35]
+      "marketShare": [0.1, 0.4]
     },
     "WR": {
-      "ppg": [8, 28],
-      "efficiency": { "stat": "ydsPerRec", "label": "Yds/rec", "range": [10, 18], "sample": 8 },
-      "height": [70, 76],
-      "weight": [175, 215],
-      "forty": [4.6, 4.3]
+      "ppg": [8, 32],
+      "efficiency": { "stat": "ydsPerTeamPassAtt", "label": "Rec yds/team pass att", "range": [1.0, 4.5], "sample": 60 },
+      "marketShare": [0.1, 0.45]
     },
     "TE": {
       "ppg": [5, 20],
-      "efficiency": { "stat": "ydsPerRec", "label": "Yds/rec", "range": [8, 15], "sample": 8 },
-      "height": [75, 78],
-      "weight": [230, 255],
-      "forty": [4.85, 4.5]
+      "efficiency": { "stat": "ydsPerTeamPassAtt", "label": "Rec yds/team pass att", "range": [0.5, 2.5], "sample": 60 },
+      "marketShare": [0.05, 0.3]
     }
   },
 

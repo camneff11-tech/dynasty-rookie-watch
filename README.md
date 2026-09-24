@@ -42,24 +42,22 @@ knobs are in `data/ranking.json`.
   against everyone else (including FCS). Receptions, INTs and fumbles aren't scaled.
 - **Components**, each 0–100 against position benchmarks:
   - Production: opponent-adjusted fantasy PPG
-  - Efficiency: QB adjusted yds/att, RB yds/touch, WR/TE yds/catch (shrunk toward average
-    on small samples)
-  - Size: height and weight (from ESPN's roster data)
-  - Speed: 40 time (add by hand, see below)
-- **Weights** differ by position (e.g. WR 50% production, 20% efficiency, 12% size, 18% speed).
-  A component with no data is dropped and the rest are re-weighted.
+  - Efficiency: QB adjusted yds/att, RB yds/touch, WR/TE receiving yards per *team* pass
+    attempt (the most predictive single WR/TE stat in public prospect models). Shrunk toward
+    average on small samples.
+  - Market share ("dominator rating"): share of team receiving yards and TDs (WR/TE),
+    scrimmage yards and TDs (RB), or rushing yards (QB, a dual-threat signal).
+- **Weights** differ by position (e.g. WR 45% production, 25% efficiency, 30% market share).
+  Size and speed aren't scored until combine data exists.
 - **Tiers:** 80+ Elite, 65+ Starter, 50+ Upside, below that Watch.
-- **Markers:** Produces vs Top 40 RPI, Volume producer, Efficient, Speed, Size, plus caveats
-  (Small sample, No 40 time).
+- **Markers:** Produces vs Top 40 RPI, Volume producer, Efficient, Alpha share / Dual threat,
+  plus Small sample.
+
+Top performances has two toggles: **Points / Usage** (usage ranks games by dominator share)
+and **RPI-weighted / Raw** (points and the yards/TDs shown).
 
 Early in the season RPI is noisy (a few games per team), so the opponent tiers settle down by
-midseason.
-
-### Adding measurables
-ESPN doesn't publish 40 times for college players. Add them (and override height/weight if you
-like) on a player in `data/players.json`:
-
-    { "name": "Jeremiah Smith", ..., "forty": 4.42, "height": "6-4", "weight": 222 }
+midseason. ESPN doesn't publish targets, so receptions stand in for target share.
 
 ## Fantasy scoring
 4 pt passing TD, 6 pt rushing/receiving TD, 1 pt per 25 passing yards, 1 pt per 10 rushing or

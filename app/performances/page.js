@@ -18,7 +18,7 @@ export default async function PerformancesPage({ searchParams }) {
   });
 
   // One entry per player-game, carrying the player fields the filters need.
-  const games = rows.flatMap(({ weeks, totals, gamesPlayed, measurables, ...player }) =>
+  const games = rows.flatMap(({ weeks, totals, gamesPlayed, ...player }) =>
     weeks.map((w) => ({ ...player, ...w }))
   );
   const playedWeeks = [...new Set(games.map((g) => g.week))].sort((a, b) => a - b);
