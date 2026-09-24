@@ -122,7 +122,7 @@ export default function Tracker({ rows, week, season, currentWeek, weeks, errors
         {Array.from({ length: weeks }, (_, i) => i + 1).map((n) => (
           <Link
             key={n}
-            href={`/?week=${n}`}
+            href={`/week?week=${n}`}
             aria-current={n === week ? "page" : undefined}
             className={n > currentWeek ? "future" : undefined}
           >

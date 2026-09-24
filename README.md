@@ -5,13 +5,15 @@ Colors follow the Saint Mary's (SMC) logo: navy `#06315b`, red `#db0024`, silver
 Weekly and season-to-date fantasy production for 2027 NFL draft prospects (plus a few 2028
 devy names), pulled live from ESPN's public college football API.
 
-## Pages
-- `/rankings`: the Prospect Score rankings (see "Ranking system" below).
-- `/`: one week at a time (`/?week=3`), players sorted by fantasy points, with box score lines,
-  a highlights search link, and the ESPN box score link.
-- `/season`: season-to-date leaderboard (total points or PPG) with a week-by-week strip.
-- Both have position, draft class, and scoring (PPR / Half PPR / Standard) filters. The scoring
-  choice is remembered per browser.
+## Pages (tabs)
+- **Rankings** `/`: Prospect Score rankings (see "Ranking system" below).
+- **Top performances** `/performances?week=3`: each week's best games ranked by RPI-adjusted
+  fantasy points (raw points, opponent RPI rank and multiplier shown). `?week=all` shows the
+  season's best single games.
+- **Box scores** `/week?week=3`: one week's full stat lines, with highlights and ESPN links.
+- **Season** `/season`: season-to-date totals and PPG (raw, not RPI-adjusted).
+- All tabs have position, draft class, and scoring (PPR / Half PPR / Standard) filters. The
+  scoring choice is remembered per browser. `/rankings` redirects to `/`.
 
 JSON endpoints (handy for Power BI or Sheets):
 - `/api/rankings?scoring=ppr`: ranked prospects plus the full RPI table

@@ -17,7 +17,7 @@ export async function GET(request) {
     players,
     currentWeek: current.week,
   });
-  const prospects = rankProspects(rows, config, scoring).map(({ adjTotals, ...p }) => p);
+  const prospects = rankProspects(rows, config, scoring);
 
   return Response.json(
     { scoring, prospects, rpi, errors, updatedAt },

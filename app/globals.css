@@ -376,3 +376,22 @@ footer { margin-top: 28px; color: var(--muted); font-size: 0.85rem; }
   .board.rankings > li.prospect { grid-template-columns: 28px 1fr auto; }
   .prospect .bars { grid-column: 2 / -1; margin-top: 6px; }
 }
+
+/* Top performances */
+.weeks a.all { flex: 0 0 auto; padding: 0 16px; font-size: 1.1rem; }
+.legend { margin: -6px 0 16px; color: var(--muted); font-size: 0.85rem; }
+.rpi {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.rpi.boosted { border-color: var(--accent); color: var(--accent); }
+
+/* Four tabs: let them scroll sideways on narrow phones instead of wrapping */
+.tabs { overflow-x: auto; scrollbar-width: none; white-space: nowrap; }
+.tabs::-webkit-scrollbar { display: none; }
+@media (max-width: 480px) { .tabs { gap: 16px; } .tabs a { font-size: 1.08rem; } }

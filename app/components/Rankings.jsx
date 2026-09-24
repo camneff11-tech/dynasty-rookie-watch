@@ -35,7 +35,7 @@ function GameStrip({ games }) {
       {games.map((g) => (
         <Link
           key={g.week}
-          href={`/?week=${g.week}`}
+          href={`/performances?week=${g.week}`}
           className={g.mult > 1 ? "boosted" : undefined}
           title={`Week ${g.week} vs ${g.opponent}${g.oppRank ? ` (RPI #${g.oppRank})` : " (FCS/unranked)"}: ${g.raw.toFixed(1)} raw × ${g.mult} = ${g.adj.toFixed(1)}`}
         >

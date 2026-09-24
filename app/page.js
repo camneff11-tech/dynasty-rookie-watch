@@ -1,29 +1,28 @@
 import players from "../data/players.json";
-import { buildWeek, getCurrentWeek, REGULAR_SEASON_WEEKS } from "../lib/espn";
-import Tracker from "./components/Tracker";
+import config from "../data/ranking.json";
+import { buildRankingInputs, getCurrentWeek } from "../lib/espn";
+import Rankings from "./components/Rankings";
 
-export default async function Page({ searchParams }) {
-  const sp = await searchParams;
+// Render per request; the week data underneath is cached (see lib/espn.js).
+export const dynamic = "force-dynamic";
+
+export default async function RankingsPage() {
   const current = await getCurrentWeek();
   const season = Number(process.env.SEASON) || current.season;
-  const requested = Number(sp?.week);
-  const week =
-    requested >= 1 && requested <= REGULAR_SEASON_WEEKS ? Math.floor(requested) : current.week;
 
-  const { rows, errors, updatedAt } = await buildWeek({
+  const { rows, errors, updatedAt } = await buildRankingInputs({
     season,
-    week,
+    throughWeek: current.week,
     players,
     currentWeek: current.week,
   });
 
   return (
-    <Tracker
+    <Rankings
       rows={rows}
-      week={week}
+      config={config}
       season={season}
-      currentWeek={current.week}
-      weeks={REGULAR_SEASON_WEEKS}
+      throughWeek={current.week}
       errors={errors}
       updatedAt={updatedAt}
     />

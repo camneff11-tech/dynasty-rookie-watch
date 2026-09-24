@@ -65,7 +65,7 @@ export default function SeasonBoard({ rows, season, throughWeek, errors, updated
                   return (
                     <Link
                       key={n}
-                      href={`/?week=${n}`}
+                      href={`/week?week=${n}`}
                       title={w ? `Week ${n} vs ${w.opponent}` : `Week ${n}: no stats`}
                       className={w ? undefined : "off"}
                     >
