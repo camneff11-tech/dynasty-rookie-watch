@@ -1,4 +1,4 @@
-import players from "../../../data/players.json";
+import { players } from "../../../lib/players";
 import { buildWeek, getCurrentWeek } from "../../../lib/espn";
 
 // GET /api/stats?week=3  -> JSON rows for that week (defaults to ESPN's current week)

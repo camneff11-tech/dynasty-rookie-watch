@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { gamePerformance } from "../../lib/ranking";
+import { certifiedDudKeys, gameKey, gamePerformance, slugify } from "../../lib/ranking";
 import { summarize } from "../../lib/scoring";
-import { Controls, ErrorNote, Footer, Masthead, useFilters, useScoring } from "./shared";
+import { Controls, DudSticker, ErrorNote, Footer, Masthead, StudSticker, useFilters, useScoring } from "./shared";
 
 const SEASON_LIMIT = 50;
 const VIEWS = { points: "Points", usage: "Usage" };
@@ -47,6 +47,16 @@ export default function Performances({ games, config, season, week, throughWeek,
     [games, week]
   );
   const filters = useFilters(inView);
+  // Regroup games by player to find each week's Certified Duds (see lib/ranking.js).
+  const dudKeys = useMemo(() => {
+    const byPlayer = new Map();
+    for (const g of games) {
+      const k = g.espnId ?? g.name;
+      if (!byPlayer.has(k)) byPlayer.set(k, { ...g, weeks: [] });
+      byPlayer.get(k).weeks.push(g);
+    }
+    return certifiedDudKeys([...byPlayer.values()], config, scoring);
+  }, [games, config, scoring]);
   const weighted = weighting === "rpi";
 
   const ranked = filters.filtered
@@ -112,7 +122,7 @@ export default function Performances({ games, config, season, week, throughWeek,
             <div className="who">
               <p className="who-name">
                 <span className="pos">{g.pos}</span>
-                <b>{g.name}</b>
+                <Link href={`/player/${slugify(g.name)}`}>{g.name}</Link>
               </p>
               <p className="sub">
                 {g.team} · {g.nflYear} class
@@ -158,6 +168,10 @@ export default function Performances({ games, config, season, week, throughWeek,
                   </p>
                 </>
               )}
+              {g.raw > config.certifiedStud.gamePoints && (
+                <StudSticker size="sm" title={`Certified Stud: ${config.certifiedStud.gamePoints}+ point game`} />
+              )}
+              {dudKeys.has(gameKey(g)) && <DudSticker size="sm" title="Certified Dud: a top-10 dud of the week" />}
             </div>
           </li>
         ))}

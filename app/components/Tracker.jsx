@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { fantasyPoints } from "../../lib/scoring";
-import { Controls, ErrorNote, Footer, Masthead, useFilters, useScoring } from "./shared";
+import config from "../../lib/model-config";
+import { Controls, ErrorNote, Footer, Masthead, StudSticker, useFilters, useScoring } from "./shared";
 
 const STATUS_TEXT = {
   played: null,
@@ -24,7 +25,7 @@ function formatDate(iso) {
   });
 }
 
-function PlayerRow({ row, points }) {
+function PlayerRow({ row, points, raw }) {
   const note = STATUS_TEXT[row.status];
   const scored = row.status === "played" || row.status === "live";
   return (
@@ -90,6 +91,9 @@ function PlayerRow({ row, points }) {
         ) : (
           <span className="dash">–</span>
         )}
+        {scored && raw > config.certifiedStud.gamePoints && (
+          <StudSticker size="sm" title={`Certified Stud: ${config.certifiedStud.gamePoints}+ point game`} />
+        )}
       </div>
     </article>
   );
@@ -136,7 +140,7 @@ export default function Tracker({ rows, week, season, currentWeek, weeks, errors
 
       <section className="list">
         {shown.map(({ row, points }) => (
-          <PlayerRow key={row.espnId ?? row.name} row={row} points={points} />
+          <PlayerRow key={row.espnId ?? row.name} row={row} points={points} raw={points} />
         ))}
         {shown.length === 0 && (
           <p className="empty">No prospects match. Clear the search or pick another filter.</p>

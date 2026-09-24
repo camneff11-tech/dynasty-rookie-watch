@@ -1,0 +1,959 @@
+{
+ "athleteStats": {
+  "splits": {
+   "categories": [
+    {
+     "name": "general",
+     "stats": [
+      {
+       "name": "fumbles",
+       "value": 0.0
+      },
+      {
+       "name": "fumblesLost",
+       "value": 0.0
+      },
+      {
+       "name": "fumblesTouchdowns",
+       "value": 0.0
+      },
+      {
+       "name": "gamesPlayed",
+       "value": 12.0
+      },
+      {
+       "name": "offensiveTwoPtReturns",
+       "value": 0.0
+      },
+      {
+       "name": "offensiveFumblesTouchdowns",
+       "value": 0.0
+      },
+      {
+       "name": "defensiveFumblesTouchdowns",
+       "value": 0.0
+      }
+     ]
+    },
+    {
+     "name": "passing",
+     "stats": [
+      {
+       "name": "avgGain",
+       "value": 0.0
+      },
+      {
+       "name": "completionPct",
+       "value": 0.0
+      },
+      {
+       "name": "completions",
+       "value": 0.0
+      },
+      {
+       "name": "ESPNQBRating",
+       "value": 0.0
+      },
+      {
+       "name": "interceptionPct",
+       "value": 0.0
+      },
+      {
+       "name": "interceptions",
+       "value": 0.0
+      },
+      {
+       "name": "longPassing",
+       "value": 0.0
+      },
+      {
+       "name": "netPassingYards",
+       "value": 0.0
+      },
+      {
+       "name": "netPassingYardsPerGame",
+       "value": 0.0
+      },
+      {
+       "name": "netTotalYards",
+       "value": 1560.0
+      },
+      {
+       "name": "netYardsPerGame",
+       "value": 130.0
+      },
+      {
+       "name": "passingAttempts",
+       "value": 0.0
+      },
+      {
+       "name": "passingBigPlays",
+       "value": 0.0
+      },
+      {
+       "name": "passingFirstDowns",
+       "value": 0.0
+      },
+      {
+       "name": "passingFumbles",
+       "value": 0.0
+      },
+      {
+       "name": "passingFumblesLost",
+       "value": 0.0
+      },
+      {
+       "name": "passingTouchdownPct",
+       "value": 0.0
+      },
+      {
+       "name": "passingTouchdowns",
+       "value": 0.0
+      },
+      {
+       "name": "passingYards",
+       "value": 0.0
+      },
+      {
+       "name": "passingYardsAfterCatch",
+       "value": 0.0
+      },
+      {
+       "name": "passingYardsAtCatch",
+       "value": 0.0
+      },
+      {
+       "name": "passingYardsPerGame",
+       "value": 0.0
+      },
+      {
+       "name": "QBRating",
+       "value": 0.0
+      },
+      {
+       "name": "sacks",
+       "value": 0.0
+      },
+      {
+       "name": "sackYardsLost",
+       "value": 0.0
+      },
+      {
+       "name": "teamGamesPlayed",
+       "value": 12.0
+      },
+      {
+       "name": "totalOffensivePlays",
+       "value": 241.0
+      },
+      {
+       "name": "totalPointsPerGame",
+       "value": 0.0
+      },
+      {
+       "name": "totalTouchdowns",
+       "value": 16.0
+      },
+      {
+       "name": "totalYards",
+       "value": 1560.0
+      },
+      {
+       "name": "totalYardsFromScrimmage",
+       "value": 1582.0
+      },
+      {
+       "name": "twoPointPassConvs",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtPass",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtPassAttempts",
+       "value": 0.0
+      },
+      {
+       "name": "yardsFromScrimmagePerGame",
+       "value": 131.8333282470703
+      },
+      {
+       "name": "yardsPerCompletion",
+       "value": 0.0
+      },
+      {
+       "name": "yardsPerGame",
+       "value": 130.0
+      },
+      {
+       "name": "yardsPerPassAttempt",
+       "value": 0.0
+      },
+      {
+       "name": "netYardsPerPassAttempt",
+       "value": 0.0
+      },
+      {
+       "name": "quarterbackRating",
+       "value": 39.58300018310547
+      },
+      {
+       "name": "offensiveSnapPct",
+       "value": 0.0
+      },
+      {
+       "name": "targetSharePct",
+       "value": 0.0
+      },
+      {
+       "name": "yardsPerRouteRun",
+       "value": 0.0
+      },
+      {
+       "name": "avgDepthOfTarget",
+       "value": 0.0
+      }
+     ]
+    },
+    {
+     "name": "rushing",
+     "stats": [
+      {
+       "name": "avgGain",
+       "value": 0.0
+      },
+      {
+       "name": "ESPNRBRating",
+       "value": 2120.0
+      },
+      {
+       "name": "longRushing",
+       "value": 72.0
+      },
+      {
+       "name": "netTotalYards",
+       "value": 1560.0
+      },
+      {
+       "name": "netYardsPerGame",
+       "value": 130.0
+      },
+      {
+       "name": "rushingAttempts",
+       "value": 241.0
+      },
+      {
+       "name": "rushingBigPlays",
+       "value": 0.0
+      },
+      {
+       "name": "rushingFirstDowns",
+       "value": 0.0
+      },
+      {
+       "name": "rushingFumbles",
+       "value": 0.0
+      },
+      {
+       "name": "rushingFumblesLost",
+       "value": 0.0
+      },
+      {
+       "name": "rushingTouchdowns",
+       "value": 16.0
+      },
+      {
+       "name": "rushingYards",
+       "value": 1560.0
+      },
+      {
+       "name": "rushingYardsPerGame",
+       "value": 130.0
+      },
+      {
+       "name": "stuffs",
+       "value": 0.0
+      },
+      {
+       "name": "stuffYardsLost",
+       "value": 0.0
+      },
+      {
+       "name": "teamGamesPlayed",
+       "value": 12.0
+      },
+      {
+       "name": "totalOffensivePlays",
+       "value": 241.0
+      },
+      {
+       "name": "totalPointsPerGame",
+       "value": 0.0
+      },
+      {
+       "name": "totalTouchdowns",
+       "value": 16.0
+      },
+      {
+       "name": "totalYards",
+       "value": 1560.0
+      },
+      {
+       "name": "totalYardsFromScrimmage",
+       "value": 1582.0
+      },
+      {
+       "name": "twoPointRushConvs",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtRush",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtRushAttempts",
+       "value": 0.0
+      },
+      {
+       "name": "yardsFromScrimmagePerGame",
+       "value": 131.8333282470703
+      },
+      {
+       "name": "yardsPerGame",
+       "value": 130.0
+      },
+      {
+       "name": "yardsPerRushAttempt",
+       "value": 6.4730000495910645
+      }
+     ]
+    },
+    {
+     "name": "receiving",
+     "stats": [
+      {
+       "name": "avgGain",
+       "value": 0.0
+      },
+      {
+       "name": "ESPNWRRating",
+       "value": 52.0
+      },
+      {
+       "name": "longReception",
+       "value": 11.0
+      },
+      {
+       "name": "netTotalYards",
+       "value": 1560.0
+      },
+      {
+       "name": "netYardsPerGame",
+       "value": 130.0
+      },
+      {
+       "name": "receivingBigPlays",
+       "value": 0.0
+      },
+      {
+       "name": "receivingFirstDowns",
+       "value": 0.0
+      },
+      {
+       "name": "receivingFumbles",
+       "value": 0.0
+      },
+      {
+       "name": "receivingFumblesLost",
+       "value": 0.0
+      },
+      {
+       "name": "receivingTargets",
+       "value": 0.0
+      },
+      {
+       "name": "receivingTouchdowns",
+       "value": 0.0
+      },
+      {
+       "name": "receivingYards",
+       "value": 22.0
+      },
+      {
+       "name": "receivingYardsAfterCatch",
+       "value": 0.0
+      },
+      {
+       "name": "receivingYardsAtCatch",
+       "value": 22.0
+      },
+      {
+       "name": "receivingYardsPerGame",
+       "value": 1.8333333730697632
+      },
+      {
+       "name": "receptions",
+       "value": 6.0
+      },
+      {
+       "name": "teamGamesPlayed",
+       "value": 12.0
+      },
+      {
+       "name": "totalOffensivePlays",
+       "value": 241.0
+      },
+      {
+       "name": "totalPointsPerGame",
+       "value": 0.0
+      },
+      {
+       "name": "totalTouchdowns",
+       "value": 16.0
+      },
+      {
+       "name": "totalYards",
+       "value": 1560.0
+      },
+      {
+       "name": "totalYardsFromScrimmage",
+       "value": 1582.0
+      },
+      {
+       "name": "twoPointRecConvs",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtReception",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtReceptionAttempts",
+       "value": 0.0
+      },
+      {
+       "name": "yardsFromScrimmagePerGame",
+       "value": 131.8333282470703
+      },
+      {
+       "name": "yardsPerGame",
+       "value": 130.0
+      },
+      {
+       "name": "yardsPerReception",
+       "value": 3.6670000553131104
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "athlete": {
+  "team": {
+   "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/2025/teams/142?lang=en&region=us"
+  }
+ },
+ "teamStats": {
+  "splits": {
+   "categories": [
+    {
+     "name": "general",
+     "stats": [
+      {
+       "name": "fumbles",
+       "value": 18.0
+      },
+      {
+       "name": "fumblesLost",
+       "value": 6.0
+      },
+      {
+       "name": "fumblesForced",
+       "value": 6.0
+      },
+      {
+       "name": "defensiveFumblesForced",
+       "value": 6.0
+      },
+      {
+       "name": "miscFumblesForced",
+       "value": 0.0
+      },
+      {
+       "name": "specialTeamsFumblesForced",
+       "value": 0.0
+      },
+      {
+       "name": "fumblesRecovered",
+       "value": 4.0
+      },
+      {
+       "name": "fumblesTouchdowns",
+       "value": 0.0
+      },
+      {
+       "name": "gamesPlayed",
+       "value": 12.0
+      },
+      {
+       "name": "offensiveTwoPtReturns",
+       "value": 0.0
+      },
+      {
+       "name": "offensiveFumblesTouchdowns",
+       "value": 0.0
+      },
+      {
+       "name": "defensiveFumblesTouchdowns",
+       "value": 0.0
+      },
+      {
+       "name": "totalPenalties",
+       "value": 66.0
+      },
+      {
+       "name": "totalPenaltyYards",
+       "value": 625.0
+      }
+     ]
+    },
+    {
+     "name": "passing",
+     "stats": [
+      {
+       "name": "avgGain",
+       "value": 6.15
+      },
+      {
+       "name": "completionPct",
+       "value": 64.012
+      },
+      {
+       "name": "completions",
+       "value": 217.0
+      },
+      {
+       "name": "ESPNQBRating",
+       "value": 3093.0
+      },
+      {
+       "name": "interceptionPct",
+       "value": 2.95
+      },
+      {
+       "name": "interceptions",
+       "value": 10.0
+      },
+      {
+       "name": "longPassing",
+       "value": 50.0
+      },
+      {
+       "name": "miscYards",
+       "value": 0.0
+      },
+      {
+       "name": "netPassingYards",
+       "value": 2343.0
+      },
+      {
+       "name": "netPassingYardsPerGame",
+       "value": 195.25
+      },
+      {
+       "name": "netTotalYards",
+       "value": 5152.0
+      },
+      {
+       "name": "netYardsPerGame",
+       "value": 429.33334
+      },
+      {
+       "name": "passingAttempts",
+       "value": 339.0
+      },
+      {
+       "name": "passingBigPlays",
+       "value": 0.0
+      },
+      {
+       "name": "passingFirstDowns",
+       "value": 0.0
+      },
+      {
+       "name": "passingFumbles",
+       "value": 0.0
+      },
+      {
+       "name": "passingFumblesLost",
+       "value": 0.0
+      },
+      {
+       "name": "passingTouchdownPct",
+       "value": 4.425
+      },
+      {
+       "name": "passingTouchdowns",
+       "value": 15.0
+      },
+      {
+       "name": "passingYards",
+       "value": 2343.0
+      },
+      {
+       "name": "passingYardsAfterCatch",
+       "value": 0.0
+      },
+      {
+       "name": "passingYardsAtCatch",
+       "value": 2343.0
+      },
+      {
+       "name": "passingYardsPerGame",
+       "value": 195.25
+      },
+      {
+       "name": "QBRating",
+       "value": 130.77458
+      },
+      {
+       "name": "sacks",
+       "value": 28.0
+      },
+      {
+       "name": "sackYardsLost",
+       "value": -168.0
+      },
+      {
+       "name": "teamGamesPlayed",
+       "value": 12.0
+      },
+      {
+       "name": "totalOffensivePlays",
+       "value": 893.0
+      },
+      {
+       "name": "totalPoints",
+       "value": 386.0
+      },
+      {
+       "name": "totalPointsPerGame",
+       "value": 32.167
+      },
+      {
+       "name": "totalTouchdowns",
+       "value": 60.0
+      },
+      {
+       "name": "totalYards",
+       "value": 5152.0
+      },
+      {
+       "name": "totalYardsFromScrimmage",
+       "value": 5152.0
+      },
+      {
+       "name": "twoPointPassConvs",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtPass",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtPassAttempts",
+       "value": 0.0
+      },
+      {
+       "name": "yardsFromScrimmagePerGame",
+       "value": 429.33334
+      },
+      {
+       "name": "yardsPerCompletion",
+       "value": 10.797
+      },
+      {
+       "name": "yardsPerGame",
+       "value": 429.333
+      },
+      {
+       "name": "yardsPerPassAttempt",
+       "value": 6.912
+      },
+      {
+       "name": "netYardsPerPassAttempt",
+       "value": 6.384196185286103
+      },
+      {
+       "name": "quarterbackRating",
+       "value": 86.685005
+      },
+      {
+       "name": "offensiveSnapPct",
+       "value": 0.0
+      },
+      {
+       "name": "targetSharePct",
+       "value": 0.0
+      },
+      {
+       "name": "yardsPerRouteRun",
+       "value": 0.0
+      },
+      {
+       "name": "avgDepthOfTarget",
+       "value": 0.0
+      }
+     ]
+    },
+    {
+     "name": "rushing",
+     "stats": [
+      {
+       "name": "avgGain",
+       "value": 6.15
+      },
+      {
+       "name": "ESPNRBRating",
+       "value": 3769.0
+      },
+      {
+       "name": "longRushing",
+       "value": 72.0
+      },
+      {
+       "name": "miscYards",
+       "value": 0.0
+      },
+      {
+       "name": "netTotalYards",
+       "value": 5152.0
+      },
+      {
+       "name": "netYardsPerGame",
+       "value": 429.33334
+      },
+      {
+       "name": "rushingAttempts",
+       "value": 526.0
+      },
+      {
+       "name": "rushingBigPlays",
+       "value": 0.0
+      },
+      {
+       "name": "rushingFirstDowns",
+       "value": 0.0
+      },
+      {
+       "name": "rushingFumbles",
+       "value": 0.0
+      },
+      {
+       "name": "rushingFumblesLost",
+       "value": 0.0
+      },
+      {
+       "name": "rushingTouchdowns",
+       "value": 30.0
+      },
+      {
+       "name": "rushingYards",
+       "value": 2809.0
+      },
+      {
+       "name": "rushingYardsPerGame",
+       "value": 234.083
+      },
+      {
+       "name": "stuffs",
+       "value": 0.0
+      },
+      {
+       "name": "stuffYardsLost",
+       "value": 0.0
+      },
+      {
+       "name": "teamGamesPlayed",
+       "value": 12.0
+      },
+      {
+       "name": "totalOffensivePlays",
+       "value": 893.0
+      },
+      {
+       "name": "totalPoints",
+       "value": 386.0
+      },
+      {
+       "name": "totalPointsPerGame",
+       "value": 32.167
+      },
+      {
+       "name": "totalTouchdowns",
+       "value": 60.0
+      },
+      {
+       "name": "totalYards",
+       "value": 5152.0
+      },
+      {
+       "name": "totalYardsFromScrimmage",
+       "value": 5152.0
+      },
+      {
+       "name": "twoPointRushConvs",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtRush",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtRushAttempts",
+       "value": 0.0
+      },
+      {
+       "name": "yardsFromScrimmagePerGame",
+       "value": 429.33334
+      },
+      {
+       "name": "yardsPerGame",
+       "value": 429.333
+      },
+      {
+       "name": "yardsPerRushAttempt",
+       "value": 5.34
+      }
+     ]
+    },
+    {
+     "name": "receiving",
+     "stats": [
+      {
+       "name": "avgGain",
+       "value": 6.15
+      },
+      {
+       "name": "ESPNWRRating",
+       "value": 3953.0
+      },
+      {
+       "name": "longReception",
+       "value": 50.0
+      },
+      {
+       "name": "miscYards",
+       "value": 0.0
+      },
+      {
+       "name": "netTotalYards",
+       "value": 5152.0
+      },
+      {
+       "name": "netYardsPerGame",
+       "value": 429.33334
+      },
+      {
+       "name": "receivingBigPlays",
+       "value": 0.0
+      },
+      {
+       "name": "receivingFirstDowns",
+       "value": 0.0
+      },
+      {
+       "name": "receivingFumbles",
+       "value": 0.0
+      },
+      {
+       "name": "receivingFumblesLost",
+       "value": 0.0
+      },
+      {
+       "name": "receivingTargets",
+       "value": 0.0
+      },
+      {
+       "name": "receivingTouchdowns",
+       "value": 15.0
+      },
+      {
+       "name": "receivingYards",
+       "value": 2343.0
+      },
+      {
+       "name": "receivingYardsAfterCatch",
+       "value": 0.0
+      },
+      {
+       "name": "receivingYardsAtCatch",
+       "value": 2343.0
+      },
+      {
+       "name": "receivingYardsPerGame",
+       "value": 195.25
+      },
+      {
+       "name": "receptions",
+       "value": 217.0
+      },
+      {
+       "name": "teamGamesPlayed",
+       "value": 12.0
+      },
+      {
+       "name": "totalOffensivePlays",
+       "value": 893.0
+      },
+      {
+       "name": "totalPoints",
+       "value": 386.0
+      },
+      {
+       "name": "totalPointsPerGame",
+       "value": 32.167
+      },
+      {
+       "name": "totalTouchdowns",
+       "value": 60.0
+      },
+      {
+       "name": "totalYards",
+       "value": 5152.0
+      },
+      {
+       "name": "totalYardsFromScrimmage",
+       "value": 5152.0
+      },
+      {
+       "name": "twoPointRecConvs",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtReception",
+       "value": 0.0
+      },
+      {
+       "name": "twoPtReceptionAttempts",
+       "value": 0.0
+      },
+      {
+       "name": "yardsFromScrimmagePerGame",
+       "value": 429.33334
+      },
+      {
+       "name": "yardsPerGame",
+       "value": 429.333
+      },
+      {
+       "name": "yardsPerReception",
+       "value": 10.797
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

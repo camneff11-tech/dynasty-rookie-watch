@@ -2,87 +2,83 @@
 
 Colors follow the Saint Mary's (SMC) logo: navy `#06315b`, red `#db0024`, silver `#d3d3d3`.
 
-Weekly and season-to-date fantasy production for 2027 NFL draft prospects (plus a few 2028
-devy names), pulled live from ESPN's public college football API.
+Dynasty prospect rankings and weekly production for the 2027 and 2028 NFL draft classes,
+pulled live from ESPN's public college football API (no key, no paid data).
 
 ## Pages (tabs)
-- **Rankings** `/`: Prospect Score rankings (see "Ranking system" below).
-- **Top performances** `/performances?week=3`: each week's best games ranked by RPI-adjusted
-  fantasy points (raw points, opponent RPI rank and multiplier shown). `?week=all` shows the
-  season's best single games.
-- **Box scores** `/week?week=3`: one week's full stat lines, with highlights and ESPN links.
-- **Season** `/season`: season-to-date totals and PPG (raw, not RPI-adjusted).
-- All tabs have position, draft class, and scoring (PPR / Half PPR / Standard) filters. The
-  scoring choice is remembered per browser. `/rankings` redirects to `/`.
+- **Rankings** `/`: Prospect Score by position (All / QB / RB / WR / TE tabs), sortable table,
+  flags (breakout, QB archetype, small sample) and the Certified Stud sticker.
+- **Player** `/player/<slug>`: season totals, Power 4 splits, career by season, the score
+  breakdown with each component's watchlist percentile, a weekly chart, and the game log.
+- **Top performances** `/performances?week=3`: games ranked by points or usage (dominator),
+  RPI-weighted or raw. `?week=all` shows the season's best single games.
+- **Studs & Duds** `/studs?week=3`: the week's 10 best games, and the 10 biggest drops below a
+  player's own average.
+- **Box scores** `/week?week=3`: full stat lines with highlight and ESPN links.
+- **Season** `/season`: season-to-date totals (raw, not RPI-adjusted).
 
-JSON endpoints (handy for Power BI or Sheets):
-- `/api/rankings?scoring=ppr`: ranked prospects plus the full RPI table
-- `/api/stats?week=3`: one week
-- `/api/season`: season totals plus weekly breakdown
+JSON (for Power BI / Sheets):
+- `/api/prospects?pos=WR&class=2027&scoring=ppr`: one flat row per prospect with every metric,
+  component score and percentile
+- `/api/rankings`: full ranked objects plus the RPI table
+- `/api/stats?week=3`, `/api/season`
 
-## Watchlist
-`data/players.json`. Each entry:
+## Watchlist: `data/players.json`
+Top 100 of the 2027 class and the full 2028 list from NFL Mock Draft Database's fantasy rookie
+rankings (Sept 2026), plus a few earlier picks. Each entry:
 
-    { "name": "Jeremiah Smith", "pos": "WR", "team": "Ohio State Buckeyes", "nflYear": 2027, "espnId": "5079720" }
+    { "name": "Jeremiah Smith", "pos": "WR", "team": "Ohio State Buckeyes", "nflYear": 2027,
+      "espnId": "5079720", "bigBoardRank": 2, "rookieRank": 1 }
 
-- `team` must match ESPN's full team name (it's how we find the player's game each week).
-- `espnId` is optional but recommended. It's the number in the player's ESPN URL
-  (espn.com/college-football/player/_/id/**5079720**/jeremiah-smith). With it, matching survives
-  name changes (ESPN now lists Ryan Williams as "Ryan Coleman-Williams", for example).
-  Without it, the player is matched by name.
-- If a player transfers, update `team`.
+- `team` must match ESPN's full team name. `espnId` (from the player's ESPN URL) is the match
+  key; without it the player is matched by name.
+- Optional: `dob` ("YYYY-MM-DD", enables the Age component), `bigBoardRank` (projected draft
+  slot, drives Draft capital), `earlyDeclareEligible` (true/false).
+- Extra stats ESPN doesn't have (YPRR, YAC, missed tackles forced, PFF grades, RAS) go in
+  `data/extras.json` as `[{ "name": "...", "yprr": 3.1 }]`, merged by player name
+  (`lib/players.js`). They show on player pages and in `/api/prospects`, ready to be wired into
+  the model.
 
-## Ranking system
-Every prospect gets a 0–100 **Prospect Score**, recalculated as new games come in. All the
-knobs are in `data/ranking.json`.
+## The model
+Settings: `lib/model-config.js`. Metrics: `lib/metrics.js` (a comment block explains each one
+and why analysts use it). Scoring: `lib/ranking.js`.
 
-- **Opponent adjustment.** RPI is computed from every FBS result so far
-  (25% win pct, 50% opponents' win pct, 25% opponents' opponents' win pct). In each game,
-  yards and TDs are multiplied by 1.1 against RPI 1–40 opponents, 1.05 against 41–80, and 1
-  against everyone else (including FCS). Receptions, INTs and fumbles aren't scaled.
-- **Components**, each 0–100 against position benchmarks:
-  - Production: opponent-adjusted fantasy PPG
-  - Efficiency: QB adjusted yds/att, RB yds/touch, WR/TE receiving yards per *team* pass
-    attempt (the most predictive single WR/TE stat in public prospect models). Shrunk toward
-    average on small samples.
-  - Market share ("dominator rating"): share of team receiving yards and TDs (WR/TE),
-    scrimmage yards and TDs (RB), or rushing yards (QB, a dual-threat signal).
-- **Weights** differ by position (e.g. WR 45% production, 25% efficiency, 30% market share).
-  Size and speed aren't scored until combine data exists.
-- **Tiers:** 80+ Elite, 65+ Starter, 50+ Upside, below that Watch.
-- **Markers:** Produces vs Top 40 RPI, Volume producer, Efficient, Alpha share / Dual threat,
-  plus Small sample.
+Each component is scored 0–100 against a fixed benchmark for the position, then weighted.
+Components with no data are dropped and the rest re-weighted, never counted as zero.
 
-Top performances has two toggles: **Points / Usage** (usage ranks games by dominator share)
-and **RPI-weighted / Raw** (points and the yards/TDs shown).
+| Component | What it measures |
+|---|---|
+| Draft capital | `bigBoardRank` |
+| Team-normalized | QB adj. yds/att, RB scrimmage yds/team play, WR/TE rec yds/team pass att |
+| Production | fantasy PPG, yards and TDs weighted by opponent RPI |
+| Market share | WR/TE 0.8 × rec yds share + 0.2 × rec TD share; RB rush/rec share; QB rushing share of points |
+| Age | age on Sept 1 (needs `dob`) |
+| Power 4 production | PPG vs ACC, Big 12, Big Ten, SEC and Notre Dame |
+| Prior-season production | PPG in the last full prior season (ESPN season stats) |
+| Early breakout | first season at 20% (WR) or 15% (RB/TE) market share; 1st season = 100, 2nd = 70, 3rd = 40 |
 
-Early in the season RPI is noisy (a few games per team), so the opponent tiers settle down by
-midseason. ESPN doesn't publish targets, so receptions stand in for target share.
+**RPI weighting.** RPI is computed from every FBS result this season (25% win pct, 50%
+opponents' win pct, 25% opponents' opponents'). Yards and TDs count ×1.25 vs RPI 1–25, ×1.15 vs
+26–50, ×1.1 vs 51–75, ×1.05 vs 76–100, ×1 otherwise (including FCS). Early in the season RPI is
+noisy.
 
-## Fantasy scoring
-4 pt passing TD, 6 pt rushing/receiving TD, 1 pt per 25 passing yards, 1 pt per 10 rushing or
-receiving yards, −2 per interception or fumble lost, and 1 / 0.5 / 0 per reception depending on
-the preset. Presets live in `lib/scoring.js`.
+**Certified Stud** sticker: every Tier 1 prospect (score 80+) and any game over 30 raw fantasy
+points. **Tiers:** 80+ Elite, 65+ Starter, 50+ Upside, below that Watch.
+
+Scores are benchmark-based rather than watchlist percentiles (small position groups make
+percentiles jumpy); percentiles are shown alongside on player pages.
 
 ## Caching
-Raw ESPN responses are large (0.5–1.5 MB), so we cache each processed week instead:
-finished weeks for 6 hours, the current week for 10 minutes. Editing `players.json` changes the
-cache key, so a redeploy shows the new watchlist immediately.
+Processed weeks are cached (finished weeks 7 days, the current week 30 minutes). Prior-season
+stats are cached for 30 days per player-season and 7 days as a whole. Editing `players.json`
+changes the cache key. If ESPN fails, pages show partial data and a note.
 
-## Run locally
+## Run and test locally
     npm install
-    npm run dev
-Then open http://localhost:3000
+    npm run dev      # http://localhost:3000
+    npm test         # vitest, against saved ESPN responses in fixtures/
 
-## Deploy to Vercel
-1. Push this folder to a new GitHub repo.
-2. On vercel.com, sign in with GitHub, choose "Add New > Project", and import the repo.
-3. Keep the defaults and click Deploy. You'll get a link like `your-project.vercel.app`.
+## Deploy
+Pushes to `main` on GitHub deploy to Vercel automatically. Optional `SEASON` env var pins a season.
 
-Every push to GitHub redeploys automatically. Optional: set a `SEASON` environment variable in
-Vercel to pin a season (e.g. `2026`).
-
-## Notes
-ESPN's API is unofficial and undocumented. It needs no key but can change without notice.
-If a player shows "No recorded stats" after a game they clearly played in, check their `team`
-and `espnId`.
+ESPN's API is unofficial and undocumented: no key, but it can change without notice.

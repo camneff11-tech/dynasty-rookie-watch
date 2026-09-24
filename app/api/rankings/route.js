@@ -1,5 +1,5 @@
-import players from "../../../data/players.json";
-import config from "../../../data/ranking.json";
+import { players } from "../../../lib/players";
+import config from "../../../lib/model-config";
 import { buildRankingInputs, getCurrentWeek } from "../../../lib/espn";
 import { rankProspects } from "../../../lib/ranking";
 import { SCORING } from "../../../lib/scoring";
@@ -17,7 +17,10 @@ export async function GET(request) {
     players,
     currentWeek: current.week,
   });
-  const prospects = rankProspects(rows, config, scoring);
+  const prospects = rankProspects(rows, config, scoring).map(({ metrics, ...p }) => ({
+    ...p,
+    metrics: { ...metrics, gamesDetail: undefined },
+  }));
 
   return Response.json(
     { scoring, prospects, rpi, errors, updatedAt },

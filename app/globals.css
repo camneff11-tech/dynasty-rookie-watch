@@ -12,6 +12,9 @@
   --line: #d3d9e1;
   --link: var(--navy);
   --accent: var(--red);
+  --row-a: #ffffff;
+  --row-b: #e6edf7; /* light navy tint for alternating rows */
+  --series: #1d5aa6; /* chart line (validated vs white surface) */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,6 +26,9 @@
     --line: #22344d;
     --link: #9cc0ec;
     --accent: #ff4d63;
+    --row-a: #0f1e33;
+    --row-b: #16294a;
+    --series: #4a8ad8; /* validated vs dark card surface */
   }
 }
 
@@ -398,3 +404,192 @@ footer { margin-top: 28px; color: var(--muted); font-size: 0.85rem; }
 
 .view-toggles { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 18px 0 0; }
 .view-toggles + .controls { margin-top: 10px; }
+
+
+/* ---------------------------------------------------------------------------
+   Alternating row colors on every list and table, so long lists are easy to scan */
+.list > .row,
+.board > li,
+.rank-table tbody tr,
+.data-table tbody tr { background: var(--row-a); }
+.list > .row:nth-child(even),
+.board > li:nth-child(even),
+.rank-table tbody tr:nth-child(even),
+.data-table tbody tr:nth-child(even) { background: var(--row-b); }
+.list, .board { border-top: 0; }
+.list > .row, .board > li { border-bottom: 0; padding-left: 14px; padding-right: 14px; border-radius: 6px; }
+.list > .row + .row, .board > li + li { margin-top: 4px; }
+
+/* Position sub-tabs on Rankings */
+.subtabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 0; }
+.subtabs button {
+  font: inherit;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+.subtabs button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--chalk); }
+@media (prefers-color-scheme: dark) {
+  .subtabs button[aria-pressed="true"] { background: var(--link); border-color: var(--link); color: #081424; }
+}
+
+/* Rankings table */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 6px; }
+.rank-table, .data-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.rank-table th, .data-table th {
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--line);
+  white-space: nowrap;
+}
+.rank-table th button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.rank-table th[aria-sort="ascending"] button::after { content: " ▲"; color: var(--accent); }
+.rank-table th[aria-sort="descending"] button::after { content: " ▼"; color: var(--accent); }
+.rank-table td, .data-table td { padding: 10px; vertical-align: top; }
+.rank-table .num, .data-table .num { text-align: right; white-space: nowrap; }
+.rank-table td.rank { font-family: var(--font-display), system-ui, sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--muted); }
+.rank-table .player-col { min-width: 230px; }
+.rank-table .who-name a, .board .who-name a {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.rank-table .who-name a:hover, .board .who-name a:hover { text-decoration: underline; }
+.player-cell { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.rank-table .score { display: block; font-family: var(--font-display), system-ui, sans-serif; font-weight: 800; font-size: 1.5rem; line-height: 1; }
+.rank-table .tier { display: block; margin-top: 4px; font-size: 0.8rem; }
+.rank-table tbody tr.status-no-stats td { opacity: 0.7; }
+.marker.info { border-color: var(--navy); color: var(--navy); }
+@media (prefers-color-scheme: dark) { .marker.info { border-color: var(--link); color: var(--link); } }
+
+/* Certified Stud sticker */
+.stud-sticker {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+  transform: rotate(-4deg);
+}
+.stud-sticker img {
+  display: block;
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: 0 0 0 3px var(--red), 0 2px 6px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
+}
+.stud-sticker span {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--chalk);
+  background: var(--red);
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.stud-sticker.sm span { font-size: 0.62rem; }
+.nums .stud-sticker, .fpts .stud-sticker { margin-top: 8px; }
+
+/* Studs & Duds */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.col-head {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 3px solid var(--navy);
+}
+.col-head.dud { border-bottom-color: var(--red); }
+.small.down { color: var(--accent); font-weight: 600; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Player profile */
+.back { margin: 14px 0 0; }
+.back a { color: var(--link); font-weight: 600; }
+.profile-head { display: flex; justify-content: space-between; gap: 16px; margin: 18px 0; align-items: flex-start; }
+.profile-name { font-family: var(--font-display), system-ui, sans-serif; font-size: 2rem; line-height: 1.1; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin: 0 0 16px; }
+.panel h2 { font-family: var(--font-display), system-ui, sans-serif; font-weight: 800; font-size: 1.4rem; margin: 0 0 10px; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 8px; }
+.panel-head h2 { margin: 0; }
+.panel .data-table { margin-top: 10px; }
+.data-table tr.missing td { color: var(--muted); }
+.metric-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px 20px; margin: 14px 0 0; }
+.metric-list div { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line); padding: 4px 0; }
+.metric-list dt { color: var(--muted); }
+.metric-list dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Weekly chart */
+.chart { margin: 0; }
+.chart-box { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; touch-action: pan-y; }
+.chart svg:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .axis { fill: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.chart .area { fill: var(--series); opacity: 0.1; }
+.chart .series-line { fill: none; stroke: var(--series); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart .dot { fill: var(--series); stroke: var(--card); stroke-width: 2; }
+.chart .crosshair { stroke: var(--muted); stroke-width: 1; }
+.chart .end-label { fill: var(--ink); font-size: 13px; font-weight: 600; }
+.chart-tip {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 12px));
+  pointer-events: none;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  display: grid;
+}
+.chart-tip b { font-size: 1rem; }
+
+/* Rankings table on phones: tighter columns and a sticky player column while scrolling */
+.rank-table td.player-col, .rank-table th.player-col { position: sticky; left: 0; z-index: 1; background: inherit; }
+.rank-table thead th { background: var(--paper); }
+@media (max-width: 640px) {
+  .rank-table .player-col { min-width: 168px; max-width: 190px; }
+  .rank-table td, .rank-table th { padding: 8px 6px; }
+  .rank-table .who-name a { font-size: 1.1rem; }
+  .rank-table .markers { display: none; }
+  .rank-table td.rank { display: none; }
+  .rank-table th:first-child { display: none; }
+  .player-cell { flex-direction: column; gap: 4px; }
+  .rank-table .stud-sticker img { width: 28px; height: 29px; }
+}
+
+/* Certified Dud: same sticker shape, navy ring and label, tilted the other way */
+.stud-sticker.dud { transform: rotate(4deg); }
+.stud-sticker.dud img { box-shadow: 0 0 0 3px var(--navy), 0 2px 6px rgba(0, 0, 0, 0.25); }
+.stud-sticker.dud span { background: var(--navy); }
+@media (prefers-color-scheme: dark) {
+  .stud-sticker.dud img { box-shadow: 0 0 0 3px var(--link), 0 2px 6px rgba(0, 0, 0, 0.4); }
+  .stud-sticker.dud span { background: var(--link); color: #081424; }
+}
+.stud-sticker img { object-position: center top; }
+
+/* Player game log: keep the stat line readable on phones (the table scrolls instead) */
+.data-table td.muted { min-width: 170px; }

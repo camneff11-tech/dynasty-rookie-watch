@@ -1,4 +1,4 @@
-import players from "../../../data/players.json";
+import { players } from "../../../lib/players";
 import { buildSeason, getCurrentWeek } from "../../../lib/espn";
 
 // GET /api/season -> season-to-date totals per player, with a week-by-week breakdown

@@ -1,5 +1,5 @@
-import players from "../data/players.json";
-import config from "../data/ranking.json";
+import { players } from "../lib/players";
+import config from "../lib/model-config";
 import { buildRankingInputs, getCurrentWeek } from "../lib/espn";
 import Rankings from "./components/Rankings";
 

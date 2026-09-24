@@ -1,4 +1,4 @@
-import players from "../../data/players.json";
+import { players } from "../../lib/players";
 import { buildSeason, getCurrentWeek } from "../../lib/espn";
 import SeasonBoard from "../components/SeasonBoard";
 

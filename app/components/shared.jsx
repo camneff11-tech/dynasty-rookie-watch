@@ -52,7 +52,7 @@ export function Masthead({ view, season, children }) {
       <p className="kicker">League of Guisto</p>
       <h1>Dynasty Rookie Review</h1>
       <p className="season-line">
-        2027 class <span className="season">· {season} season</span>
+        2027 &amp; 2028 classes <span className="season">· {season} season</span>
       </p>
       {children}
       <nav className="tabs" aria-label="Choose view">
@@ -61,6 +61,9 @@ export function Masthead({ view, season, children }) {
         </Link>
         <Link href="/performances" aria-current={view === "performances" ? "page" : undefined}>
           Top performances
+        </Link>
+        <Link href="/studs" aria-current={view === "studs" ? "page" : undefined}>
+          Studs &amp; Duds
         </Link>
         <Link href="/week" aria-current={view === "week" ? "page" : undefined}>
           Box scores
@@ -85,12 +88,14 @@ function Chips({ label, options, value, onChange, format = (o) => o }) {
   );
 }
 
-export function Controls({ filters, scoring, setScoring }) {
+export function Controls({ filters, scoring, setScoring, showPositions = true }) {
   const { classes, pos, setPos, draftClass, setDraftClass, query, setQuery } = filters;
   return (
     <div className="controls">
       <div className="control-row">
-        <Chips label="Filter by position" options={POSITIONS} value={pos} onChange={setPos} />
+        {showPositions && (
+          <Chips label="Filter by position" options={POSITIONS} value={pos} onChange={setPos} />
+        )}
         {classes.length > 1 && (
           <Chips
             label="Filter by draft class"
@@ -119,6 +124,32 @@ export function Controls({ filters, scoring, setScoring }) {
       </div>
     </div>
   );
+}
+
+// Stickers: "Certified Stud" (Tier 1 prospects, 30+ point games) and "Certified Dud"
+// (the week's top-10 duds).
+function Sticker({ kind, size, title }) {
+  const stud = kind === "stud";
+  const label = stud ? "Certified Stud" : "Certified Dud";
+  return (
+    <span className={`stud-sticker ${kind} ${size}`} title={title ?? label}>
+      <img
+        src={stud ? "/certified-stud.png" : "/certified-dud.png"}
+        alt=""
+        width={size === "sm" ? 36 : 56}
+        height={size === "sm" ? 36 : 56}
+      />
+      <span>{label}</span>
+    </span>
+  );
+}
+
+export function StudSticker({ size = "md", title }) {
+  return <Sticker kind="stud" size={size} title={title} />;
+}
+
+export function DudSticker({ size = "md", title }) {
+  return <Sticker kind="dud" size={size} title={title} />;
 }
 
 export function ErrorNote({ errors }) {
