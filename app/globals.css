@@ -316,3 +316,63 @@ footer { margin-top: 28px; color: var(--muted); font-size: 0.85rem; }
   .stat-line { flex-direction: column; gap: 0; }
   .stat-line dt { width: auto; }
 }
+
+/* Rankings */
+.board.rankings > li.prospect { grid-template-columns: 36px 1fr auto 240px; gap: 6px 18px; }
+.prospect .bars { margin: 0; }
+.muted { color: var(--muted); }
+.tier {
+  margin-top: 6px !important;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.bars { display: grid; gap: 5px; align-content: start; }
+.bar { display: grid; grid-template-columns: 96px 1fr; gap: 8px; align-items: center; font-size: 0.85rem; }
+.bar dt { color: var(--muted); }
+.bar .wt { font-size: 0.75rem; opacity: 0.8; }
+.bar dd { margin: 0; display: grid; grid-template-columns: 1fr 26px; gap: 6px; align-items: center; }
+.bar dd b { text-align: right; font-variant-numeric: tabular-nums; }
+.track { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.fill { display: block; height: 100%; background: var(--navy); border-radius: 4px; }
+.bar.missing dt, .bar.missing b { opacity: 0.55; }
+@media (prefers-color-scheme: dark) { .fill { background: var(--link); } }
+
+.markers { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; }
+.marker {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+.marker.good { background: var(--navy); color: var(--chalk); border-color: var(--navy); }
+.marker.warn { color: var(--muted); }
+@media (prefers-color-scheme: dark) {
+  .marker.good { background: transparent; color: var(--link); border-color: var(--link); }
+}
+
+.weekly a.boosted { border-color: var(--accent); }
+.weekly a .mult { color: var(--accent); font-weight: 700; }
+
+.method {
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  font-size: 0.92rem;
+}
+.method summary { cursor: pointer; font-weight: 600; }
+.method ul { padding-left: 18px; }
+.method li { margin: 4px 0; }
+.method table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.method th, .method td { padding: 4px 12px 4px 0; text-align: left; border-bottom: 1px solid var(--line); }
+
+@media (max-width: 760px) {
+  .board.rankings > li.prospect { grid-template-columns: 28px 1fr auto; }
+  .prospect .bars { grid-column: 2 / -1; margin-top: 6px; }
+}

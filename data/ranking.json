@@ -1,0 +1,56 @@
+{
+  "opponentTiers": [
+    { "upToRank": 40, "multiplier": 1.1, "label": "Top 40 RPI" },
+    { "upToRank": 80, "multiplier": 1.05, "label": "RPI 41-80" }
+  ],
+
+  "weights": {
+    "QB": { "production": 55, "efficiency": 25, "size": 10, "speed": 10 },
+    "RB": { "production": 50, "efficiency": 20, "size": 15, "speed": 15 },
+    "WR": { "production": 50, "efficiency": 20, "size": 12, "speed": 18 },
+    "TE": { "production": 50, "efficiency": 15, "size": 20, "speed": 15 }
+  },
+
+  "benchmarks": {
+    "QB": {
+      "ppg": [10, 32],
+      "efficiency": { "stat": "ayPerAtt", "label": "Adj. yds/att", "range": [6, 11], "sample": 30 },
+      "height": [72, 77],
+      "weight": [200, 235],
+      "forty": [4.95, 4.5]
+    },
+    "RB": {
+      "ppg": [8, 28],
+      "efficiency": { "stat": "ydsPerTouch", "label": "Yds/touch", "range": [4, 8], "sample": 15 },
+      "height": [68, 72],
+      "weight": [190, 225],
+      "forty": [4.65, 4.35]
+    },
+    "WR": {
+      "ppg": [8, 28],
+      "efficiency": { "stat": "ydsPerRec", "label": "Yds/rec", "range": [10, 18], "sample": 8 },
+      "height": [70, 76],
+      "weight": [175, 215],
+      "forty": [4.6, 4.3]
+    },
+    "TE": {
+      "ppg": [5, 20],
+      "efficiency": { "stat": "ydsPerRec", "label": "Yds/rec", "range": [8, 15], "sample": 8 },
+      "height": [75, 78],
+      "weight": [230, 255],
+      "forty": [4.85, 4.5]
+    }
+  },
+
+  "tiers": [
+    { "min": 80, "label": "Tier 1 · Elite" },
+    { "min": 65, "label": "Tier 2 · Starter" },
+    { "min": 50, "label": "Tier 3 · Upside" },
+    { "min": 0, "label": "Tier 4 · Watch" }
+  ],
+
+  "markers": {
+    "componentHigh": 80,
+    "smallSampleGames": 2
+  }
+}

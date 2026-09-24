@@ -56,6 +56,9 @@ export function Masthead({ view, season, children }) {
       </p>
       {children}
       <nav className="tabs" aria-label="Choose view">
+        <Link href="/rankings" aria-current={view === "rankings" ? "page" : undefined}>
+          Rankings
+        </Link>
         <Link href="/" aria-current={view === "week" ? "page" : undefined}>
           Week
         </Link>

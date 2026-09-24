@@ -6,6 +6,7 @@ Weekly and season-to-date fantasy production for 2027 NFL draft prospects (plus 
 devy names), pulled live from ESPN's public college football API.
 
 ## Pages
+- `/rankings`: the Prospect Score rankings (see "Ranking system" below).
 - `/`: one week at a time (`/?week=3`), players sorted by fantasy points, with box score lines,
   a highlights search link, and the ESPN box score link.
 - `/season`: season-to-date leaderboard (total points or PPG) with a week-by-week strip.
@@ -13,6 +14,7 @@ devy names), pulled live from ESPN's public college football API.
   choice is remembered per browser.
 
 JSON endpoints (handy for Power BI or Sheets):
+- `/api/rankings?scoring=ppr`: ranked prospects plus the full RPI table
 - `/api/stats?week=3`: one week
 - `/api/season`: season totals plus weekly breakdown
 
@@ -27,6 +29,35 @@ JSON endpoints (handy for Power BI or Sheets):
   name changes (ESPN now lists Ryan Williams as "Ryan Coleman-Williams", for example).
   Without it, the player is matched by name.
 - If a player transfers, update `team`.
+
+## Ranking system
+Every prospect gets a 0–100 **Prospect Score**, recalculated as new games come in. All the
+knobs are in `data/ranking.json`.
+
+- **Opponent adjustment.** RPI is computed from every FBS result so far
+  (25% win pct, 50% opponents' win pct, 25% opponents' opponents' win pct). In each game,
+  yards and TDs are multiplied by 1.1 against RPI 1–40 opponents, 1.05 against 41–80, and 1
+  against everyone else (including FCS). Receptions, INTs and fumbles aren't scaled.
+- **Components**, each 0–100 against position benchmarks:
+  - Production: opponent-adjusted fantasy PPG
+  - Efficiency: QB adjusted yds/att, RB yds/touch, WR/TE yds/catch (shrunk toward average
+    on small samples)
+  - Size: height and weight (from ESPN's roster data)
+  - Speed: 40 time (add by hand, see below)
+- **Weights** differ by position (e.g. WR 50% production, 20% efficiency, 12% size, 18% speed).
+  A component with no data is dropped and the rest are re-weighted.
+- **Tiers:** 80+ Elite, 65+ Starter, 50+ Upside, below that Watch.
+- **Markers:** Produces vs Top 40 RPI, Volume producer, Efficient, Speed, Size, plus caveats
+  (Small sample, No 40 time).
+
+Early in the season RPI is noisy (a few games per team), so the opponent tiers settle down by
+midseason.
+
+### Adding measurables
+ESPN doesn't publish 40 times for college players. Add them (and override height/weight if you
+like) on a player in `data/players.json`:
+
+    { "name": "Jeremiah Smith", ..., "forty": 4.42, "height": "6-4", "weight": 222 }
 
 ## Fantasy scoring
 4 pt passing TD, 6 pt rushing/receiving TD, 1 pt per 25 passing yards, 1 pt per 10 rushing or
