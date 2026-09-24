@@ -1,4 +1,6 @@
-# Dynasty Rookie Watch: 2027 class
+# League of Guisto Dynasty Rookie Review
+
+Colors follow the Saint Mary's (SMC) logo: navy `#06315b`, red `#db0024`, silver `#d3d3d3`.
 
 Weekly and season-to-date fantasy production for 2027 NFL draft prospects (plus a few 2028
 devy names), pulled live from ESPN's public college football API.

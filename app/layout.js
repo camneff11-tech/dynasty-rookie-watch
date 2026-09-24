@@ -5,8 +5,8 @@ const body = Barlow({ subsets: ["latin"], weight: ["400", "500", "600"], variabl
 const display = Barlow_Condensed({ subsets: ["latin"], weight: ["600", "800"], variable: "--font-display" });
 
 export const metadata = {
-  title: "Dynasty Rookie Watch · 2027 Class",
-  description: "Weekly and season-to-date fantasy production for 2027 NFL draft prospects, pulled live from ESPN.",
+  title: "League of Guisto Dynasty Rookie Review",
+  description: "The League of Guisto's weekly and season-to-date fantasy tracker for 2027 NFL draft prospects, pulled live from ESPN.",
 };
 
 export default function RootLayout({ children }) {

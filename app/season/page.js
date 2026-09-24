@@ -5,7 +5,7 @@ import SeasonBoard from "../components/SeasonBoard";
 // Render per request; the week data underneath is cached (see lib/espn.js).
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Season leaderboard · Dynasty Rookie Watch" };
+export const metadata = { title: "Season leaderboard · League of Guisto Dynasty Rookie Review" };
 
 export default async function SeasonPage() {
   const current = await getCurrentWeek();

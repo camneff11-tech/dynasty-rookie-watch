@@ -5,7 +5,7 @@ import Link from "next/link";
 import { DEFAULT_SCORING, SCORING } from "../../lib/scoring";
 
 const POSITIONS = ["All", "QB", "RB", "WR", "TE"];
-const SCORING_KEY = "rookie-watch-scoring";
+const SCORING_KEY = "guisto-rookie-scoring";
 
 // Scoring choice is remembered per browser; the page renders fine without storage.
 export function useScoring() {
@@ -49,10 +49,11 @@ export function useFilters(rows) {
 export function Masthead({ view, season, children }) {
   return (
     <header className="masthead">
-      <p className="kicker">Dynasty rookie watch</p>
-      <h1>
-        2027 class <span className="season">{season} season</span>
-      </h1>
+      <p className="kicker">League of Guisto</p>
+      <h1>Dynasty Rookie Review</h1>
+      <p className="season-line">
+        2027 class <span className="season">· {season} season</span>
+      </p>
       {children}
       <nav className="tabs" aria-label="Choose view">
         <Link href="/" aria-current={view === "week" ? "page" : undefined}>

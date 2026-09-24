@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path d="M32 2 58 10v22c0 15-11 25-26 30C17 57 6 47 6 32V10Z" fill="#06315b"/>
+  <path d="M32 10 50 15.5V32c0 10.5-7.5 17.5-18 21-10.5-3.5-18-10.5-18-21V15.5Z" fill="#db0024"/>
+  <text x="32" y="40" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="22" fill="#ffffff">LG</text>
+</svg>
